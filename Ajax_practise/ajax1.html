@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="clickhere">Click Me</button>
+
+    <div id="texthere">
+
+    </div>
+
+
+    <script>
+    
+        document.getElementById("clickhere").addEventListener("click",datafind );
+
+        function datafind(){
+          // console.log("button clicked");
+         var ab =new XMLHttpRequest();
+         // console.log(ab);
+         ab.open('GET','new.txt',true);
+         console.log('READYSTATE',ab.readyState);
+
+         //ab.onload=function(){
+           //  if(this.status==200){
+                // console.log(this.responseText);
+             //}
+        // }
+        ab.onprogress=function(){
+            console.log('READYSTATE',ab.readyState);
+        }
+        ab.onload=function(){
+            if(this.status==200){
+                document.getElementById('texthere').innerHTML=this.responseText;
+            }else if(this.status==404){
+                document.getElementById('texthere').innerHTML="Not found the data";
+            } 
+        }
+        ab.onerror=function(){
+            console.log('request error...');
+        }
+
+        ab.onreadystatechange=function(){
+            
+           //  console.log('READYSTATE',ab.readyState);
+            if(this.readyState==4 && this.status==200){
+               // console.log(this.responseText);
+            }
+        }
+         ab.send();
+
+
+        }
+
+    </script>
+    
+</body>
+</html>

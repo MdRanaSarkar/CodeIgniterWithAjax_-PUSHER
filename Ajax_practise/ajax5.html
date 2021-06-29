@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP post connect</title>
+</head>
+<body>
+    <form id="postform">
+    
+        <input name="name" type="text" id="name">
+        <input name="submit" type="submit" id="submit">
+    
+    </form>
+
+    <button id="all_data">
+        Click me
+    </button>
+
+    <div id="showdata">
+
+    </div>
+
+    <script>
+        document.getElementById('postform').addEventListener('submit',PostData);
+
+
+        function PostData(e){
+
+            e.preventDefault();
+            var nam=document.getElementById('name').value;
+            var params='name='+nam;
+
+            var pd=new XMLHttpRequest();
+
+            pd.open('POST','ajax.php',true);
+            pd.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+            pd.onload=function(){
+                if(this.status==200){
+                    
+                    console.log(this.responseText);
+                }
+                else if(this.status==404){
+                    console.log("Not Found");
+
+                }
+            }
+            pd.send(params);
+        }
+
+
+
+        document.getElementById('all_data').addEventListener('click',LoadData);
+
+        function LoadData(){
+            var ld=new XMLHttpRequest();
+
+            ld.open('GET','users.php',true);
+            
+            ld.onload=function(){
+                if(this.status==200){
+                    var data=JSON.parse(this.responseText);
+
+                    html="";
+                    for(var i in data){
+                        html+='<ul>'+
+                            '<li> Id : '+data[i].id+'</li>'+
+                            '<li> Name : '+data[i].name+'</li>'+
+                            '</ul>'
+                    }
+
+                    document.getElementById('showdata').innerHTML=html;
+
+
+                }
+                else if(this.status==404){
+                    document.getElementById('showdata').innerHTML="NOt FOUND";
+                }
+            }
+            ld.send();
+        }
+    </script>
+</body>
+</html>

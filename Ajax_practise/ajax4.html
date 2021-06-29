@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax PHP connect</title>
+</head>
+<body>
+    <button id="phpconnect">
+            Click Me
+    </button>
+
+    <div id="datashow"></div>
+
+<form method="GET" action="ajax.php">
+    
+    <input name="name" type="text">
+    <input name="submit" type="submit">
+
+</form>
+
+<br>
+<form method="POST" action="ajax.php">
+    <input name="name" type="text">
+    <input name="submit" value="post" type="submit">
+
+</form>
+<br>
+<form id="getform">
+    
+    <input name="namea" type="text" id="namea">
+    <input name="submit" type="submit" id="submit">
+
+</form>
+
+    <script>
+     document.getElementById('phpconnect').addEventListener('click',PhpLoad);
+     document.getElementById('getform').addEventListener('submit',ButtonSubmit);
+     function PhpLoad(){
+         var pcon=new XMLHttpRequest();
+
+         pcon.open('GET','ajax.php?name=Rana',true);
+
+         pcon.onload=function(){
+             if(this.status==200){
+                 console.log(this.responseText);
+
+             }
+             else if(this.status==404){
+                 console.log('Not Found');
+             }
+         }
+         pcon.send();
+     }
+
+     function ButtonSubmit(e){
+        e.preventDefault();
+        var ab=new XMLHttpRequest();
+         var data=document.getElementById('namea').value;
+         ab.open('GET','ajax.php?name='+data,true)
+         ab.onload=function(){
+             if(this.status==200){
+                 console.log(this.responseText);
+             }
+             else if(this.status==404){
+                 console.log("Not found");
+             }
+         }
+         ab.send();
+     }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>server connect</title>
+</head>
+<body>
+    
+
+    
+
+    <button id="okk">Get Form Data</button>
+    
+    <form action="new.php" method="POST" id="postform">
+        <input id="myinput" name="name">
+        <input type="submit" id="submit">
+    </form>
+
+
+    <div id="showing">
+
+    </div>
+
+    <script>
+    
+        document.getElementById('postform').addEventListener('submit',FormFunction);
+
+        document.getElementById('okk').addEventListener('click',ShowData);
+
+
+        function FormFunction(event){
+
+            event.preventDefault();
+            var nv=document.getElementById('myinput').value;
+
+            var params='name='+nv;
+            var bb=new XMLHttpRequest();
+          
+            
+            bb.open('POST','new.php',true);
+            bb.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+            bb.onload =function(){
+
+                if(this.status==200){
+                    console.log(this.responseText);
+
+                }
+                else if(this.status==404){
+                    console.log('not found');
+                }
+
+               
+       
+        }
+            bb.send(params);
+       
+    }
+
+
+    function ShowData(){
+
+        var bb=new XMLHttpRequest();
+      
+        
+        bb.open('POST','getdata.php',true);
+
+        bb.onload =function(){
+              var ab="";
+              var dj=JSON.parse(this.responseText);
+            if(this.status==200){
+                
+
+                for(var i in dj ){
+
+                    ab+="<ul>"+
+                        "<li>id="+ dj[i].id+"</li>"+
+                        "<li>name="+ dj[i].name+"</li>"+
+                        "</ul>"
+                }
+                 
+
+                document.getElementById('showing').innerHTML=ab;
+
+
+            }
+            else if(this.status==404){
+                console.log('not found');
+            }
+
+           
+   
+    }
+        bb.send();
+   
+}
+
+
+
+    </script>
+</body>
+</html>

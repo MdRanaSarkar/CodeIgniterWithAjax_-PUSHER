@@ -1,0 +1,58 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\hrms"
+		},
+		{
+			"path": "..\\..\\..\\..\\CI"
+		},
+		{
+			"path": "..\\..\\..\\..\\Ajax_php"
+		},
+		{
+			"path": "..\\..\\..\\..\\Ajax_CI_CRUD"
+		},
+		{
+			"path": "..\\..\\..\\..\\codeigniter-ajax-crud-master"
+		},
+		{
+			"path": "..\\..\\..\\..\\CI_Crud"
+		},
+		{
+			"path": "..\\..\\..\\..\\original_hrms"
+		},
+		{
+			"path": "..\\..\\..\\..\\PHP_Pusher"
+		},
+		{
+			"path": "..\\..\\..\\..\\CI_Ajax_crud"
+		},
+		{
+			"path": "..\\..\\..\\..\\codeigniter-realtime-chat-pusher-master"
+		},
+		{
+			"path": "..\\..\\..\\..\\codeigniter_pusher_chat-app"
+		},
+		{
+			"path": "..\\..\\..\\..\\amader"
+		},
+		{
+			"path": "..\\..\\..\\..\\Ajax_practise"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\Users\\user\\Desktop\\Anirban\\anirbanit.com"
+		},
+		{
+			"path": "..\\..\\..\\..\\phpunit"
+		},
+		{
+			"path": "..\\..\\..\\..\\CI_Unit_testing"
+		},
+		{
+			"path": "..\\..\\.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Ajax_practise"
+	}
+}

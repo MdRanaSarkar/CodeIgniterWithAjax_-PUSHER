@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Ajax 3 external data
+    </title>
+</head>
+<body>
+
+    <button id="external">
+        Click me
+    </button>
+
+    <div id="showhere">
+
+    </div>
+
+<style>
+    .users{
+        display:flex;
+        background:#234233;
+        padding:5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+    <script>
+        document.getElementById("external").addEventListener("click",LoadExternal);
+
+        function LoadExternal(){
+            var ex=new XMLHttpRequest();
+
+            ex.open('GET','https://api.github.com/users',true);
+            ex.onload=function(){
+                var user=JSON.parse(this.responseText);
+                if(this.status==200){
+                   html="";
+                   for(var i in user ){
+                       html+='<div class="users" >'+
+                           '<img src="'+user[i].avatar_url +'" widht="70" height="70">'+
+                           '<ul>'+
+                               '<li> ID : '+user[i].id + '</li>'+
+                               '<li> Name : '+user[i].login + '</li>'+
+                               '<li> Node Id: '+user[i].node_id + '</li>'+
+                               '<li> Type : '+user[i].type + '</li>'
+                            +'</ul>'
+                            +'</div>';
+                   }
+
+                   document.getElementById("showhere").innerHTML=html;
+                   
+                }
+                else if(this.status==404){
+                    document.getElementById("showhere").innerHTML="Not found";
+                }
+            }
+
+            ex.send();
+           
+        }
+    </script>
+    
+</body>
+</html>

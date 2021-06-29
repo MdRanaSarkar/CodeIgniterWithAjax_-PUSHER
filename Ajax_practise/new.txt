@@ -1,0 +1,8 @@
+XAMPP is meant only for development purposes. It has certain configuration settings 
+that make it easy to develop locally but that are insecure if you want to have your 
+installation accessible to others. If you want have your XAMPP accessible from the
+internet, make sure you understand the implications and you checked the FAQs to
+learn how to protect your site. Alternatively you can use WAMP, MAMP or LAMP
+which are similar packages which are more suitable for production.
+
+Start the XAMPP Control Panel to check the server status.

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div>
+        <button id="clickme">Click Me</button>
+    </div>
+
+    <div id="showme">
+     Json Data show
+    </div>
+
+
+
+    
+
+    <script>
+       document.getElementById('clickme').addEventListener('click', ClickHere);
+
+       function ClickHere(){
+
+        var sd=new XMLHttpRequest();
+
+        sd.open('GET','https://api.github.com/users',true);
+
+        sd.onload =function(){
+
+            var jp=JSON.parse(this.responseText);
+             var ss="";
+             for(var i in jp){
+                ss+="<ul>"+
+                    "<li>id="+jp[i].id+ "</li>"+
+                    "<li>Image="+"<img src=' "+jp[i].avatar_url +"'' height='30px'>"+'</img>'+"</li>"+
+                   "<li> name="+jp[i].type + "</li>"+
+                   "</ul>"
+               }
+
+               document.getElementById('showme').innerHTML=ss;
+   
+         
+           console.log(jp);
+  
+         
+       //document.getElementById('showme').innerHTML=ss;
+        }
+        sd.send();
+       }
+
+    </script>
+</body>
+</html>

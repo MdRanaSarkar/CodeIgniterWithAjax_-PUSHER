@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax 2</title>
+</head>
+<body>
+
+    <button id="ajaxload">Just Press me </button>
+    <button id="multiajax">More Ajax </button>
+
+
+    <div id="simpledata">
+
+    </div>
+
+    <div id="multidataa">
+
+    </div>
+
+
+    <script>
+
+document.getElementById('ajaxload').addEventListener('click',LoadingSimple);
+
+document.getElementById("multiajax").addEventListener("click",Multidata);
+
+function LoadingSimple(){
+    var ud=new XMLHttpRequest();
+
+    ud.open('GET','user.json',true);
+    
+    ud.onload=function(){
+        if(this.status==200){
+            var user=JSON.parse(this.responseText);
+            console.log(user.name);
+            output="";
+            output+='<ul>'+
+                '<li> name='+user.name+'</li>'+
+                '<li> name='+user.id+'</li>'+
+                '<li> name='+user.home+'</li>'+
+            '</ul>';
+            document.getElementById('simpledata').innerHTML=output;
+    }
+    else if(this.status==404){
+        document.getElementById('simpledata').innerHTML="data is not found";
+    }
+
+    }
+    ud.send();
+    
+  
+}
+
+function Multidata(){
+    var md=new XMLHttpRequest();
+
+    md.open('GET','users.json',true);
+
+    md.onload=function(){
+
+        var us=JSON.parse(this.responseText);
+        var  out="";
+        for(var i in us){
+            out+='<ul>'+
+                '<li> Name: '+us[i].name+'</li>'+
+                '<li> Id: '+us[i].id+'</li>'+
+                '<li> Home: '+us[i].home+'</li>'+
+                '</ul>';
+        }
+
+        if(this.status==200){
+            document.getElementById("multidataa").innerHTML=out;
+        }
+        else if(this.status==404){
+            document.getElementById("multidataa").innerHTML="NOT FOUND";
+        }
+    }
+    md.send()
+}
+
+    </script>
+    
+</body>
+</html>

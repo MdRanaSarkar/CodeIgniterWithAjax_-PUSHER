@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>server connect</title>
+</head>
+<body>
+    
+
+    <button id="okk">For form</button>
+
+    <script>
+    
+        document.getElementById('okk').addEventListener('click',FormFunction);
+
+        function FormFunction(){
+
+            var bb=new XMLHttpRequest();
+
+            bb.open('GET','ajax4.php',true);
+
+            bb.onload =function(){
+
+            console.log('ok');
+
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
